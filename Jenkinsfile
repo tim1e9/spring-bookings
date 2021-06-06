@@ -10,7 +10,7 @@ node {
     }
 
     stage('Build the Dockerfile') {
-        docker.withRegistry('https://760087176660.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:tim-aws-cred') {
+        docker.withRegistry("${AWS_ECR_REPO}", "${AWS_ECR_INFO}") {
             builtImage = docker.build('fishing-site-repo')
             builtImage.push()
         }
